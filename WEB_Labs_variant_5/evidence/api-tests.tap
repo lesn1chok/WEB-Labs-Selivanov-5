@@ -1,0 +1,149 @@
+TAP version 13
+# Subtest: PHP API integration and security
+    # Subtest: PHP domain validation and cryptography assertions
+    ok 1 - PHP domain validation and cryptography assertions
+      ---
+      duration_ms: 657.1054
+      type: 'test'
+      ...
+    # Subtest: Health and HTTP method contract
+    ok 2 - Health and HTTP method contract
+      ---
+      duration_ms: 13.1611
+      type: 'test'
+      ...
+    # Subtest: No unauthorized CRUD
+    ok 3 - No unauthorized CRUD
+      ---
+      duration_ms: 5.8124
+      type: 'test'
+      ...
+    # Subtest: CSRF required even for registration
+    ok 4 - CSRF required even for registration
+      ---
+      duration_ms: 5.1207
+      type: 'test'
+      ...
+    # Subtest: HttpOnly SameSite cookies and session rotation
+    ok 5 - HttpOnly SameSite cookies and session rotation
+      ---
+      duration_ms: 3.4395
+      type: 'test'
+      ...
+    # Subtest: Sensor API has distinct changing samples
+    ok 6 - Sensor API has distinct changing samples
+      ---
+      duration_ms: 12.6049
+      type: 'test'
+      ...
+    # Subtest: Create with trusted server calculation
+    ok 7 - Create with trusted server calculation
+      ---
+      duration_ms: 11.7766
+      type: 'test'
+      ...
+    # Subtest: Read own data and safely retain text
+    ok 8 - Read own data and safely retain text
+      ---
+      duration_ms: 5.6175
+      type: 'test'
+      ...
+    # Subtest: Cross-user isolation and IDOR protection
+    ok 9 - Cross-user isolation and IDOR protection
+      ---
+      duration_ms: 13.9627
+      type: 'test'
+      ...
+    # Subtest: Validation rejects invalid quantity and precision
+    ok 10 - Validation rejects invalid quantity and precision
+      ---
+      duration_ms: 10.1924
+      type: 'test'
+      ...
+    # Subtest: Update persists correctly
+    ok 11 - Update persists correctly
+      ---
+      duration_ms: 17.0531
+      type: 'test'
+      ...
+    # Subtest: SQL injection cannot bypass login
+    ok 12 - SQL injection cannot bypass login
+      ---
+      duration_ms: 5.5386
+      type: 'test'
+      ...
+    # Subtest: CSRF attack refused
+    ok 13 - CSRF attack refused
+      ---
+      duration_ms: 4.1311
+      type: 'test'
+      ...
+    # Subtest: Secrets are not publicly served
+    ok 14 - Secrets are not publicly served
+      ---
+      duration_ms: 9.209
+      type: 'test'
+      ...
+    # Subtest: Security response headers
+    ok 15 - Security response headers
+      ---
+      duration_ms: 3.0369
+      type: 'test'
+      ...
+    # Subtest: Passwords and phone encrypted at rest
+    ok 16 - Passwords and phone encrypted at rest
+      ---
+      duration_ms: 1.8535
+      type: 'test'
+      ...
+    # Subtest: Supplier sync and atomic stock reservation
+    ok 17 - Supplier sync and atomic stock reservation
+      ---
+      duration_ms: 51.6538
+      type: 'test'
+      ...
+    # Subtest: Repeat sync preserves reserved stock
+    ok 18 - Repeat sync preserves reserved stock
+      ---
+      duration_ms: 15.6582
+      type: 'test'
+      ...
+    # Subtest: Stock shortage rejected without changes
+    ok 19 - Stock shortage rejected without changes
+      ---
+      duration_ms: 13.9196
+      type: 'test'
+      ...
+    # Subtest: Verified SQLite backup includes key
+    ok 20 - Verified SQLite backup includes key
+      ---
+      duration_ms: 79.1307
+      type: 'test'
+      ...
+    # Subtest: Delete and logout
+    ok 21 - Delete and logout
+      ---
+      duration_ms: 30.6651
+      type: 'test'
+      ...
+    1..21
+ok 1 - PHP API integration and security
+  ---
+  duration_ms: 2044.0627
+  type: 'test'
+  ...
+# Subtest: Language examples cover all sections and deterministic results
+ok 2 - Language examples cover all sections and deterministic results
+  ---
+  duration_ms: 1.9395
+  type: 'test'
+  ...
+1..2
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5117.8009

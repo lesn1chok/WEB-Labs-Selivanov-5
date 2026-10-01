@@ -1,0 +1,4 @@
+import http from 'node:http';
+let sequence=0;const port=Number(process.env.SENSOR_PORT||8091);
+http.createServer((req,res)=>{res.setHeader('Access-Control-Allow-Origin','*');res.setHeader('Cache-Control','no-store');res.setHeader('Content-Type','application/json');if(req.url==='/health')return res.end(JSON.stringify({ok:true,service:'sensor-simulator'}));if(req.url!=='/sensors'){res.statusCode=404;return res.end('{}');}const t=sequence++;res.end(JSON.stringify({source:'Навчальний симулятор, не реальний робот',sequence:t,timestamp:new Date().toISOString(),distance:Number((80+20*Math.sin(t/3)).toFixed(2)),temperature:Number((24+4*Math.sin(t/5)).toFixed(2)),voltage:Number((12.2-.1*Math.cos(t/6)).toFixed(2))}));}).listen(port,process.env.BIND_HOST||'127.0.0.1',()=>console.log('Sensor API '+port));
+

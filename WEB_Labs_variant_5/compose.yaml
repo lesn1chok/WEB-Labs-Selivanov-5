@@ -1,0 +1,45 @@
+services:
+  web:
+    build: .
+    image: web-labs:local
+    ports:
+      - "127.0.0.1:8087:8080"
+    environment:
+      SENSOR_URL: http://sensor:8091
+      SUPPLIER_URL: http://supplier:8092
+    volumes:
+      - lab-data:/data
+    depends_on:
+      - sensor
+      - supplier
+    restart: unless-stopped
+  sensor:
+    image: node:22-bookworm-slim
+    working_dir: /app
+    command: ["node", "sensor-api.mjs"]
+    environment:
+      BIND_HOST: 0.0.0.0
+    volumes:
+      - ./services/sensor-api.mjs:/app/sensor-api.mjs:ro
+    restart: unless-stopped
+  supplier:
+    image: node:22-bookworm-slim
+    working_dir: /app
+    command: ["node", "supplier-api.mjs"]
+    environment:
+      BIND_HOST: 0.0.0.0
+    volumes:
+      - ./services/supplier-api.mjs:/app/supplier-api.mjs:ro
+    restart: unless-stopped
+  backup:
+    image: web-labs:local
+    working_dir: /app
+    command: ["sh", "-c", "while true; do php scripts/backup.php; sleep 3600; done"]
+    volumes:
+      - lab-data:/data
+    depends_on:
+      web:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  lab-data:

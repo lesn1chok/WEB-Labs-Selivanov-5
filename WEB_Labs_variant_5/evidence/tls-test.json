@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-02",
+  "status": 200,
+  "certificate_validated": true,
+  "protocol": "TLSv1.3",
+  "secure_cookie": true,
+  "http_only": true,
+  "same_site": "Lax",
+  "self_signed_local": true
+}

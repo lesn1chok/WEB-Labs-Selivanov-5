@@ -1,0 +1,2 @@
+const url=process.env.LAB_URL||'http://127.0.0.1:8087';const started=Date.now();try{const res=await fetch(url+'/api.php?resource=health',{signal:AbortSignal.timeout(5000)});const json=await res.json();const report={time:new Date().toISOString(),http:res.status,latency_ms:Date.now()-started,database:json.database,ok:res.ok&&json.ok};console.log(JSON.stringify(report));if(!report.ok)process.exitCode=1;}catch(error){console.error(JSON.stringify({ok:false,message:error.message}));process.exitCode=1;}
+

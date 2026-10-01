@@ -1,0 +1,5 @@
+$(function(){const tbody=$('tbody'),original=tbody.find('tr').get();const collator=new Intl.Collator('uk',{numeric:true,sensitivity:'base'});let current='',ascending=true;const keys={name:0,price:1,stock:2};
+$('thead button').on('click',function(){const key=$(this).data('key');ascending=current===key?!ascending:true;current=key;const rows=tbody.find('tr').get().map((row,index)=>({row,index,value:$(row).children().eq(keys[key]).text().trim()}));
+rows.sort((a,b)=>{const comparison=key==='name'?collator.compare(a.value,b.value):Number(a.value)-Number(b.value);return comparison===0?a.index-b.index:(ascending?comparison:-comparison);});tbody.append(rows.map(item=>item.row));$('th').attr('aria-sort','none');$(this).closest('th').attr('aria-sort',ascending?'ascending':'descending');$('#sort-status').text('Відсортовано: '+$(this).text().replace(' ↕','')+' · '+(ascending?'за зростанням':'за спаданням'));});
+$('#reset').on('click',()=>{tbody.append(original);$('th').attr('aria-sort','none');current='';ascending=true;$('#sort-status').text('Початковий порядок відновлено.');});});
+

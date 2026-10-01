@@ -1,0 +1,3 @@
+import http from 'node:http';
+http.createServer((req,res)=>{res.setHeader('Content-Type','application/json');res.setHeader('Cache-Control','no-store');if(req.url==='/health')return res.end(JSON.stringify({ok:true,service:'supplier-simulator'}));if(req.url!=='/materials'){res.statusCode=404;return res.end('{}');}res.end(JSON.stringify({source:'Локальний симулятор постачальника',updated_at:new Date().toISOString(),items:[{sku:'COTTON',name:'Бавовна',price:280,stock:100},{sku:'LINEN',name:'Льон',price:420,stock:60},{sku:'WOOL',name:'Вовна',price:650,stock:35},{sku:'SILK',name:'Шовк',price:850,stock:15}]}));}).listen(Number(process.env.SUPPLIER_PORT||8092),process.env.BIND_HOST||'127.0.0.1',()=>console.log('Supplier API 8092'));
+

@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-02",
+  "results": [
+    {
+      "browser": "chrome",
+      "test": "Lab 1 semantic HTML and illustration",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "Lab 2 examples DOM and form validation",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "Lab 3 hover and keyboard menu",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "Lab 4 numeric text sorting and reset",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "Lab 5 polling pause field selection routes and settings",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "Lab 7 registration login CSRF refusal",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "Lab 6 UI CRUD and stored XSS displayed as text",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "Lab 8 health monitoring",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "Lab 9 supplier cost orders stock and notifications",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "Labs 1 to 9 mobile 390px without page overflow",
+      "passed": true
+    },
+    {
+      "browser": "chrome",
+      "test": "No JavaScript runtime errors",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Lab 1 semantic HTML and illustration",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Lab 2 examples DOM and form validation",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Lab 3 hover and keyboard menu",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Lab 4 numeric text sorting and reset",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Lab 5 polling pause field selection routes and settings",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Lab 7 registration login CSRF refusal",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Lab 6 UI CRUD and stored XSS displayed as text",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Lab 8 health monitoring",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Lab 9 supplier cost orders stock and notifications",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "Labs 1 to 9 mobile 390px without page overflow",
+      "passed": true
+    },
+    {
+      "browser": "msedge",
+      "test": "No JavaScript runtime errors",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+import https from'node:https';import http from'node:http';import{readFileSync}from'node:fs';
+https.createServer({key:readFileSync('certs/localhost.key'),cert:readFileSync('certs/localhost.crt'),minVersion:'TLSv1.2'},(req,res)=>{const forward=http.request({hostname:'127.0.0.1',port:Number(process.env.PHP_TLS_PORT||8090),method:req.method,path:req.url,headers:{...req.headers,host:'localhost'}},upstream=>{res.writeHead(upstream.statusCode,upstream.headers);upstream.pipe(res);});forward.on('error',()=>{res.writeHead(502);res.end('Backend unavailable');});req.pipe(forward);}).listen(8443,'127.0.0.1',()=>console.log('HTTPS https://localhost:8443'));
+

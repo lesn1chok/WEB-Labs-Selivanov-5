@@ -1,0 +1,24 @@
+{
+  "name": "web-labs-selivanov-variant-5",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "test": "node --test tests/*.test.mjs",
+    "sensor-api": "node services/sensor-api.mjs",
+    "supplier-api": "node services/supplier-api.mjs",
+    "monitor": "node scripts/monitor.mjs",
+    "backup": "php scripts/backup.php"
+  },
+  "dependencies": {
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "react-router-dom": "7.18.4",
+    "jquery": "3.7.1"
+  },
+  "devDependencies": {
+    "vite": "7.3.6",
+    "@vitejs/plugin-react": "5.0.4"
+  }
+}
