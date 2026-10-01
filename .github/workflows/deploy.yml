@@ -1,0 +1,31 @@
+name: Deploy to existing cloud server
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: WEB_Labs_variant_5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Validate supplied deployment configuration
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USERNAME: ${{ secrets.DEPLOY_USER }}
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          test -n "$HOST" && test -n "$USERNAME" && test -n "$SSH_KEY" && test -n "$KNOWN_HOSTS"
+          [[ "$HOST" =~ ^[a-zA-Z0-9.-]+$ ]] && [[ "$USERNAME" =~ ^[a-zA-Z0-9_-]+$ ]]
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+          tar --exclude=.git --exclude=node_modules --exclude=data --exclude=certs --exclude=reports --exclude=evidence -czf /tmp/labs-code.tar.gz .
+          scp /tmp/labs-code.tar.gz "$USERNAME@$HOST:labs-code.tar.gz"
+          ssh "$USERNAME@$HOST" 'mkdir -p web-labs && tar -xzf labs-code.tar.gz -C web-labs && cd web-labs && test -f certs/cert.pem && test -f certs/key.pem && docker compose -f compose.yaml -f deploy/compose.cloud.yaml up --build -d --wait'

@@ -1,0 +1,7 @@
+WEB_Labs_variant_5/node_modules/
+WEB_Labs_variant_5/.npm-cache/
+WEB_Labs_variant_5/data/
+WEB_Labs_variant_5/certs/
+WEB_Labs_variant_5/runtime/
+WEB_Labs_variant_5/.env
+*.log
