@@ -1,0 +1,71 @@
+name: Deploy static demo to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download project
+        uses: actions/checkout@v6
+
+      - name: Configure Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: WEB_Labs_variant_5/package-lock.json
+
+      - name: Install packages and build React
+        working-directory: WEB_Labs_variant_5
+        run: |
+          npm ci
+          sed -i \
+            -e 's#href="/"#href="/WEB-Labs-Selivanov-5/"#g' \
+            -e "s#fetch('/api.php#fetch('/WEB-Labs-Selivanov-5/api.php#g" \
+            lab05/src/main.jsx
+          npm run build -- --base=/WEB-Labs-Selivanov-5/
+
+      - name: Prepare static website
+        working-directory: WEB_Labs_variant_5
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp -R shared vendor lab01 lab02 lab03 lab04 lab06 lab07 lab08 lab09 _site/
+
+          find _site -type f \
+            \( -name '*.html' -o -name '*.js' -o -name '*.mjs' -o -name '*.css' \) \
+            -exec sed -i \
+              -e 's#="/#="/WEB-Labs-Selivanov-5/#g' \
+              -e "s#'/#'/WEB-Labs-Selivanov-5/#g" {} +
+
+          cp -R dist/* _site/
+          touch _site/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: WEB_Labs_variant_5/_site
+
+      - name: Publish website
+        id: deployment
+        uses: actions/deploy-pages@v4
